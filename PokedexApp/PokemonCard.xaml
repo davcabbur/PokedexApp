@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="PokedexApp.PokemonCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pokedex"
+             mc:Ignorable="d" 
+             d:DesignHeight="280" d:DesignWidth="200">
+    <UserControl.Resources>
+        <!-- Etilo para las insignias de cada tipo -->
+        <Style x:Key="TipoInsigniaStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="22"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
+        <Style x:Key="TipoTextoStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Border x:Name="BordeCard"
+            CornerRadius="16"
+            Margin="8"
+            Background="White"
+            BorderThickness="0"
+            RenderTransformOrigin="0.5,0.5">
+        <Border.RenderTransform>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+        </Border.RenderTransform>
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" To="1.05" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" To="1.05" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" To="1.0" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" To="1.0" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <Border.Effect>
+            <DropShadowEffect Color="#40000000"
+                              Direction="270"
+                              ShadowDepth="4"
+                              BlurRadius="12"
+                              Opacity="0.4"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0"
+                    x:Name="HeaderBorder"
+                    CornerRadius="16 16 0 0"
+                    Padding="12,8"
+                    >
+                <TextBlock x:Name="NumeroPokemon"
+                               Text="#001"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               HorizontalAlignment="Right"
+                               Opacity="0.9"/>
+            </Border>
+
+            <!-- Sprite del Pokemon -->
+            <Grid Grid.Row="1" Background="White">
+                <Viewbox Width="140" Height="140">
+                    <Image x:Name="PokemonSprite"
+                           Stretch="Uniform"
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Viewbox>
+            </Grid>
+
+            <!-- Nombre del Pokemon -->
+            <Border Grid.Row="2"
+                    Background="White"
+                    Padding="12 8 12 4">
+                <TextBlock x:Name="NombrePokemon"
+                               Text="Bulbasur"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               TextAlignment="Center"
+                               Foreground="#2C3E50"
+                               TextTrimming="CharacterEllipsis"/>
+            </Border>
+
+            <!-- Tipos del Pokemon -->
+            <Border Grid.Row="3"
+                    Background="White"
+                    Padding="12 4 12 12"
+                    CornerRadius="0 0 16 16">
+                <ItemsControl x:Name="TypesContainer"
+                              HorizontalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource TipoInsigniaStyle}"
+                                    Background="{Binding Color}">
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource TipoTextoStyle}"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
+    

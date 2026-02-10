@@ -1,0 +1,244 @@
+﻿<UserControl x:Class="PokedexApp.PokemonStatsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <!-- Estilo para el nombre de la estadística -->
+        <Style x:Key="StatNameStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Estilo para el valor de la estadística -->
+        <Style x:Key="StatValueStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#34495E"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+
+        <!-- Estilo para el contenedor de la barra -->
+        <Style x:Key="StatBarContainerStyle" TargetType="Border">
+            <Setter Property="Background" Value="#E0E0E0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+
+        <!-- Estilo para la barra de progreso -->
+        <Style x:Key="StatBarStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Border Background="White" 
+            CornerRadius="12" 
+            Padding="20"
+            BorderBrush="#BDC3C7"
+            BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect Color="#30000000" 
+                            Direction="270" 
+                            ShadowDepth="3" 
+                            BlurRadius="8" 
+                            Opacity="0.3"/>
+        </Border.Effect>
+
+        <StackPanel>
+            <!-- Título -->
+            <TextBlock Text="Base Stats" 
+                      FontSize="20" 
+                      FontWeight="Bold" 
+                      Foreground="#2C3E50"
+                      Margin="0,0,0,15"/>
+
+            <!-- HP -->
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                          Text="HP" 
+                          Style="{StaticResource StatNameStyle}"/>
+                <TextBlock Grid.Column="1" 
+                          x:Name="HpValue" 
+                          Text="45" 
+                          Style="{StaticResource StatValueStyle}"/>
+                <Border Grid.Column="2" 
+                       Style="{StaticResource StatBarContainerStyle}">
+                    <Border x:Name="HpBar" 
+                           Style="{StaticResource StatBarStyle}"
+                           Background="#FF5959"/>
+                </Border>
+                <TextBlock Grid.Column="3" x:Name="HpStar" Text="" Foreground="#F1C40F" FontSize="14" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Ataque -->
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                          Text="Ataque" 
+                          Style="{StaticResource StatNameStyle}"/>
+                <TextBlock Grid.Column="1" 
+                          x:Name="AttackValue" 
+                          Text="49" 
+                          Style="{StaticResource StatValueStyle}"/>
+                <Border Grid.Column="2" 
+                       Style="{StaticResource StatBarContainerStyle}">
+                    <Border x:Name="AttackBar" 
+                           Style="{StaticResource StatBarStyle}"
+                           Background="#F5AC78"/>
+                </Border>
+                <TextBlock Grid.Column="3" x:Name="AttackStar" Text="" Foreground="#F1C40F" FontSize="14" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Defensa -->
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                          Text="Defensa" 
+                          Style="{StaticResource StatNameStyle}"/>
+                <TextBlock Grid.Column="1" 
+                          x:Name="DefenseValue" 
+                          Text="49" 
+                          Style="{StaticResource StatValueStyle}"/>
+                <Border Grid.Column="2" 
+                       Style="{StaticResource StatBarContainerStyle}">
+                    <Border x:Name="DefenseBar" 
+                           Style="{StaticResource StatBarStyle}"
+                           Background="#FAE078"/>
+                </Border>
+                <TextBlock Grid.Column="3" x:Name="DefenseStar" Text="" Foreground="#F1C40F" FontSize="14" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Ataque especial -->
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                          Text="Ataque Especial" 
+                          Style="{StaticResource StatNameStyle}"/>
+                <TextBlock Grid.Column="1" 
+                          x:Name="SpAttackValue" 
+                          Text="65" 
+                          Style="{StaticResource StatValueStyle}"/>
+                <Border Grid.Column="2" 
+                       Style="{StaticResource StatBarContainerStyle}">
+                    <Border x:Name="SpAttackBar" 
+                           Style="{StaticResource StatBarStyle}"
+                           Background="#9DB7F5"/>
+                </Border>
+                <TextBlock Grid.Column="3" x:Name="SpAttackStar" Text="" Foreground="#F1C40F" FontSize="14" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Defensa Especial -->
+            <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                          Text="Defensa Especial" 
+                          Style="{StaticResource StatNameStyle}"/>
+                <TextBlock Grid.Column="1" 
+                          x:Name="SpDefenseValue" 
+                          Text="65" 
+                          Style="{StaticResource StatValueStyle}"/>
+                <Border Grid.Column="2" 
+                       Style="{StaticResource StatBarContainerStyle}">
+                    <Border x:Name="SpDefenseBar" 
+                           Style="{StaticResource StatBarStyle}"
+                           Background="#A7DB8D"/>
+                </Border>
+                <TextBlock Grid.Column="3" x:Name="SpDefenseStar" Text="" Foreground="#F1C40F" FontSize="14" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Velocidad -->
+            <Grid Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                          Text="Velocidad" 
+                          Style="{StaticResource StatNameStyle}"/>
+                <TextBlock Grid.Column="1" 
+                          x:Name="SpeedValue" 
+                          Text="45" 
+                          Style="{StaticResource StatValueStyle}"/>
+                <Border Grid.Column="2" 
+                       Style="{StaticResource StatBarContainerStyle}">
+                    <Border x:Name="SpeedBar" 
+                           Style="{StaticResource StatBarStyle}"
+                           Background="#FA92B2"/>
+                </Border>
+                <TextBlock Grid.Column="3" x:Name="SpeedStar" Text="" Foreground="#F1C40F" FontSize="14" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Total -->
+            <Border Background="#ECF0F1" 
+                   CornerRadius="8" 
+                   Padding="10" 
+                   Margin="0,15,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                              Text="Total" 
+                              FontSize="16" 
+                              FontWeight="Bold" 
+                              Foreground="#2C3E50"
+                              VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" 
+                              x:Name="TotalValue" 
+                              Text="318" 
+                              FontSize="20" 
+                              FontWeight="Bold" 
+                              Foreground="#E74C3C"
+                              VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Border>
+</UserControl>

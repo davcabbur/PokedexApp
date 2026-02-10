@@ -1,0 +1,83 @@
+﻿<Window x:Class="PokedexApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PokedexApp"
+        Title="Pokédex" Height="600" Width="1000"
+        Background="#F5F5F5">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+            Background="#E74C3C"
+            Padding="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Título -->
+                <TextBlock Grid.Column="0" 
+                           Text="Pokédex de David" 
+                           Foreground="Yellow"
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           VerticalAlignment="Center">
+					<!-- Le he añadido un sombreado azul para que parezcan las letras de Pokémon -->
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Blue" 
+                                          Direction="320" 
+                                          ShadowDepth="2" 
+                                          BlurRadius="5" 
+                                          Opacity="1"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <!-- Buscador -->
+                <StackPanel Grid.Column="2" 
+                           Orientation="Horizontal" 
+                           VerticalAlignment="Center">
+                    <TextBox x:Name="SearchTextBox" 
+                             Width="300" 
+                             FontSize="16"
+                             VerticalContentAlignment="Center" 
+                             Padding="5" 
+                             Margin="0,0,10,0" 
+                             ToolTip="Buscar por nombre o número"/>
+                    <Button x:Name="SearchButton" 
+                            Content="Buscar" 
+                            FontSize="16"
+                            Padding="15,5" 
+                            Click="SearchButton_Click"
+                            Background="White"
+                            FontWeight="Bold"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+                <WrapPanel x:Name="PokemonCardsPanel"
+                       HorizontalAlignment="Center"
+                       Margin="20"/>
+            </ScrollViewer>
+
+            <local:PokemonStatsControl x:Name="StatsDetailControl" 
+                                   Grid.Column="1"
+                                   Visibility="Collapsed" 
+                                   VerticalAlignment="Center"
+                                   Margin="20, 20, 30, 20"/>
+        </Grid>
+    </Grid>
+</Window>
